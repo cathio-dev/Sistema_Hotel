@@ -59,5 +59,15 @@ public class Reserva{
         this.gerenciadorServicos = gerenciadorServicos;
     }
 
+    @Override
+public String toString() {
+    return "Reserva {" +
+            "entrada=" + entrada +
+            ", saida=" + saida +
+            ", valorTotal=" + valorTotal +
+            ", gerenciadorQuartos=" + (gerenciadorQuartos != null ? gerenciadorQuartos.toString() : "null") +
+            ", gerenciadorServicos=" + (gerenciadorServicos != null ? gerenciadorServicos.toString() : "null") +
+            '}';
+}
 
 }
