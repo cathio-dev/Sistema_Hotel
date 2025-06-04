@@ -36,7 +36,7 @@ public abstract class Hospede {
         this.reserva = reserva;
     }
 
-    public abstract Double calcularDesconto(Reserva reserva) {
+    public abstract Double calcularDesconto() {
         Double valorDesconto = 0.00;
         return valorDesconto;
     }
