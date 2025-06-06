@@ -2,7 +2,7 @@ package Hospede;
 
 
 
-public class HospedeFidelidade extends Hospede{
+public class HospedeFidelidade implements  Hospede{
     private String nome;
     private Integer cadastro;
 
