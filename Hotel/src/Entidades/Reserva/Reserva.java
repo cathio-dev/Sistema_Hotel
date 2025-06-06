@@ -1,5 +1,7 @@
 import java.time.LocalDate;
 
+import Entidades.Quartos.GerenciadorDeQuartos;
+import Servicos.GerenciadorDeServicos;
 public class Reserva {
     private LocalDate entrada;
     private LocalDate saida;
