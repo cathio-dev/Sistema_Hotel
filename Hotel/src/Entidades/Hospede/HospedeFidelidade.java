@@ -3,34 +3,31 @@ package Hospede;
 
 
 public class HospedeFidelidade extends Hospede{
-    private Integer numeroEstadias;
+    private String nome;
+    private Integer cadastro;
 
-    public HospedeFidelidade(String nome, Integer CPF, Reserva reserva, Integer numeroEstadias){
-        super(nome, CPF, reserva);
-        this.numeroEstadias = numeroEstadias;
-    }
-
-    public void setNumeroEstadias(Integer numeroEstadias){
-        this.numeroEstadias = numeroEstadias;
-    }
-
-    public Integer getNumeroEstadias(){
-        return numeroEstadias;
-    }
-
+    //Desconto fixo para hospede corporativo
+    public static final double DESCONTO_HOSPEDEFIDELIDADE = 0.15;
 
     @Override
-    public Double calcularDesconto() {
-        Double desconto;
-        if (numeroEstadias >= 10){
-            desconto = reserva.getValorTotal() * 0.15;
-        } else if (numeroEstadias >= 5){
-            desconto = reserva.getValorTotal() * 0.10;
-        } else {
-            desconto = reserva.getValorTotal() * 0.05;
-        }
-
-        return desconto;
+    public String getNome(){
+        return nome;
     }
+
+    @Override
+    public void setNome(String nome) { 
+        this.nome = nome; 
+    }
+
+    @Override
+    public Integer getCadastro() { 
+        return cadastro; 
+    }
+
+    @Override
+    public void setCadastro(Integer cadastro) {
+        this.cadastro = cadastro; 
+    }
+
     
 }
