@@ -12,52 +12,53 @@ public class Reserva{
 
     }
 
-    public Reserva(LocalDate entrada, LocalDate saida, GerenciadorQuartos gerenciadorQuartos, GerenciadorServicos gerenciadorServicos){
+    public Reserva(LocalDate entrada, LocalDate saida, Double valorTotal) {
         this.entrada = entrada;
         this.saida = saida;
-        this.gerenciadorQuartos = gerenciadorQuartos;
-        this.gerenciadorServicos = gerenciadorServicos;
-    }
-
-    public LocalDate getEntrada(){
-        return entrada;
-    }
-
-    public void setEntrada(LocalDate entrada){
-        this.entrada = entrada;
-    }
-
-    public LocalDate getSaida(){
-        return saida;
-    }
-
-    public void setSaida(LocalDate saida){
-        this.saida = saida;
-    }
-
-    public Double getValorTotal(){
-        return valorTotal;
-    }
-
-    public void setValorTotal(Double valorTotal){
         this.valorTotal = valorTotal;
+        this.gerenciadorQuartos = new GerenciadorDeQuartos();
+        this.gerenciadorServicos = new GerenciadorDeServicos();
     }
 
-    public GerenciadorQuartos getGerenciadorQuartos(){
-        return gerenciadorQuartos;
-    }
+	public LocalDate getEntrada() {
+		return entrada;
+	}
 
-    public void setGerenciadorQuartos(GerenciadorQuartos gerenciadorQuartos){
-        this.gerenciadorQuartos = gerenciadorQuartos;
-    }
+	public void setEntrada(LocalDate entrada) {
+		this.entrada = entrada;
+	}
 
-    public GerenciadorServicos getGerenciadorServico(){
-        return gerenciadorServicos;
-    }
+	public LocalDate getSaida() {
+		return saida;
+	}
 
-    public void setGerenciadorQuartos(GerenciadorServicos gerenciadorServicos){
-        this.gerenciadorServicos = gerenciadorServicos;
-    }
+	public void setSaida(LocalDate saida) {
+		this.saida = saida;
+	}
+
+	public Double getValorTotal() {
+		return valorTotal;
+	}
+
+	public void setValorTotal(Double valorTotal) {
+		this.valorTotal = valorTotal;
+	}
+
+	public GerenciadorDeQuartos getGerenciadorQuartos() {
+		return gerenciadorQuartos;
+	}
+
+	public void setGerenciadorQuartos(GerenciadorDeQuartos gerenciadorQuartos) {
+		this.gerenciadorQuartos = gerenciadorQuartos;
+	}
+
+	public GerenciadorDeServicos getGerenciadorServicos() {
+		return gerenciadorServicos;
+	}
+
+	public void setGerenciadorServicos(GerenciadorDeServicos gerenciadorServicos) {
+		this.gerenciadorServicos = gerenciadorServicos;
+	}
 
     @Override
 public String toString() {
