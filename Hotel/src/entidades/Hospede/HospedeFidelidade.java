@@ -1,12 +1,11 @@
-package Hospede;
+package entidades.Hospede;
 
-public class HospedeVIP implements  Hospede{
-    
+public class HospedeFidelidade implements  Hospede{
     private String nome;
     private Integer cadastro;
 
-    //Desconto fixo para hospede vip
-    public static final double DESCONTO_HOSPEDEVIP = 0.2;
+    //Desconto fixo para hospede corporativo
+    public static final double DESCONTO_HOSPEDEFIDELIDADE = 0.15;
 
     @Override
     public String getNome(){
@@ -27,4 +26,6 @@ public class HospedeVIP implements  Hospede{
     public void setCadastro(Integer cadastro) {
         this.cadastro = cadastro; 
     }
+
+    
 }

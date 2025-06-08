@@ -1,8 +1,8 @@
-package Reserva;
+package entidades.Reserva;
 
 import java.time.LocalDate;
 
-import Hospede.Hospede;
+import entidades.Hospede.Hospede;
 import services.GerenciadorDeServicos;
 
 public class Reserva {

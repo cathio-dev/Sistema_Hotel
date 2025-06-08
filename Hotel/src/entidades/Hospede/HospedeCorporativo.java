@@ -1,4 +1,4 @@
-package Hospede
+package entidades.Hospede;
 
 public class HospedeCorporativo implements Hospede{
     

@@ -1,8 +1,10 @@
 package services;
 
 import java.util.List;
+
+import entidades.Item.Item;
+
 import java.util.*;
-import Item.Item;
 
 public class ServicoDeQuarto implements Servico{
 	private String descricao;

@@ -1,4 +1,4 @@
-package Item;
+package entidades.Item;
 
 public class Item{
     private String descricao;
