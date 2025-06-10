@@ -1,28 +1,10 @@
 package Entidades;
 
-public class Hospede {
-    private String nome;
-    private Integer CPF;
+public interface Hospede {
 
-    public Hospede(String nome, Integer CPF) {
-        this.nome = nome;
-        this.CPF = CPF;
-    }
-    public String getNome() {
-        return nome;
-    }
+    String getNome();
+    void setNome(String nome);
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public Integer getCPF() {
-        return CPF;
-    }
-
-    public void setCPF(Integer CPF) {
-        this.CPF = CPF;
-    }
-
-
+    Integer getCadastro();
+    void setCadastro(Integer cadastro);
 }
