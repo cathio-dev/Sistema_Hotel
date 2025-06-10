@@ -45,7 +45,7 @@ public class Reserva {
         long dias = java.time.temporal.ChronoUnit.DAYS.between(entrada, saida);
         double valorQuarto = quarto.getValorDiaria() * dias;
 
-        System.out.printf(" - TOTAL: R$ %.2f\n", valorQuarto);
+        System.out.printf(" - TOTAL EM " + dias + " dias : R$ %.2f\n" , valorQuarto);
         System.out.println("--------------------------\n");
     }
 

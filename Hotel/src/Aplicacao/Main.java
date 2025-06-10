@@ -34,18 +34,7 @@ public class Main {
         gerenciadorQuartos.adicionarQuarto(new QuartoFamilia(301, 3, false, 250.0, 4, true));
         gerenciadorQuartos.adicionarQuarto(new SuitePresidencial(401, 4, false, 400.0, 2, true));
 
-        System.out.println("==============================================================");
-        System.out.println("|                                                            |");
-        System.out.println("|              BEM-VINDO AO SISTEMA DO HOTEL                 |");
-        System.out.println("|                      ██████╗ ██╗  ██╗                      |");
-        System.out.println("|                      ██╔══██╗██║ ██╔╝                      |");
-        System.out.println("|                      ███████╔█████╔╝                       |");
-        System.out.println("|                      ██╔══██═██╔═██╗                       |");
-        System.out.println("|                      ██║  ██ ██║  ██╗                      |");
-        System.out.println("|                      ╚═╝     ╚═╝  ╚═╝                      |");
-        System.out.println("|                   HOTEL KRONBAUER SYSTEM                   |");
-        System.out.println("|                                                            |");
-        System.out.println("==============================================================");
+        exibirCabecalhoHotel();
 
         System.out.print("\nDigite o nome do hóspede: ");
         String nome = scanner.nextLine();
@@ -103,13 +92,16 @@ public class Main {
 
         CheckOut checkOut = new CheckOut(reserva);
         checkOut.processarCheckout();
-        
-       //resumo da reserva
+
+        // resumo da reserva
         System.out.println("\n=== RESUMO DA RESERVA ===");
         System.out.println(" - Hóspede: " + hospede.getNome() + " (Cadastro: " + hospede.getCadastro() + ")");
-        System.out.println(" - Quarto reservado: " + quartoEscolhido.getNumero() + " - " + quartoEscolhido.getClass().getSimpleName());
-        System.out.println(" - Data de saída: " + saida.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-        System.out.println(" - Data de entrada: " + entrada.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        System.out.println(" - Quarto reservado: " + quartoEscolhido.getNumero() + " - "
+                + quartoEscolhido.getClass().getSimpleName());
+        System.out.println(
+                " - Data de saída: " + saida.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        System.out.println(
+                " - Data de entrada: " + entrada.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         System.out.println();
 
         System.out.println("///--- BOLETO DE GASTOS ---///");
@@ -120,7 +112,7 @@ public class Main {
             System.out.println("Nenhum serviço adicional selecionado.");
         } else {
             for (Servico servico : gerenciadorServicos.getServicos()) {
-                System.out.printf(" - %s - R$ %.2f\n", servico.getDescricao() ,servico.getPreco() );
+                System.out.printf(" - %s - R$ %.2f\n", servico.getDescricao(), servico.getPreco());
                 valorTotalServicos = valorTotalServicos + servico.getPreco();
             }
 
@@ -133,32 +125,67 @@ public class Main {
         System.out.println(" - " + quartoEscolhido.toString());
         reserva.valorReservaDias(); // Printa quanto valor total (dias * diaria)
 
-        if(tipoHospede == 1){
+        if (tipoHospede == 1) {
             System.out.println("Desconto de Hospede Corporativo = 10%");
-            System.out.println("(" + checkOut.calcularValorTotal()/0.9 + " - " + checkOut.calcularValorTotal()/0.9*0.1 + " = " + checkOut.calcularValorTotal() + ")");
+            System.out.println("(" + checkOut.calcularValorTotal() / 0.9 + " - "
+                    + checkOut.calcularValorTotal() / 0.9 * 0.1 + " = " + checkOut.calcularValorTotal() + ")");
             System.out.println("--------------------------");
-        }else if(tipoHospede == 2){
+        } else if (tipoHospede == 2) {
             System.out.println("Desconto de Hospede Fidelidade = 15%");
-            System.out.println("(" + checkOut.calcularValorTotal()/0.85 + " - " + checkOut.calcularValorTotal()/0.85*0.15 + " = " + checkOut.calcularValorTotal() + ")");
+            System.out.println("(" + checkOut.calcularValorTotal() / 0.85 + " - "
+                    + checkOut.calcularValorTotal() / 0.85 * 0.15 + " = " + checkOut.calcularValorTotal() + ")");
             System.out.println("--------------------------");
-        }else{
+        } else {
             System.out.println("Desconto de Hospede VIP = 20%");
-            System.out.println("(" + checkOut.calcularValorTotal()/0.8 + " - " + checkOut.calcularValorTotal()/0.8*0.2 + " = " + checkOut.calcularValorTotal() + ")");
+            System.out.println("(" + checkOut.calcularValorTotal() / 0.8 + " - "
+                    + checkOut.calcularValorTotal() / 0.8 * 0.2 + " = " + checkOut.calcularValorTotal() + ")");
             System.out.println("--------------------------");
         }
-        System.out.println("=== APLICAÇÃO ENCERRADA ===");
+        exibirEncerramentoSistema();
         scanner.close();
     }
 
-    private static void adicionarServicos(Scanner scanner, GerenciadorDeServicos gerenciadorServicos, List<Item> itensDisponiveis) {
-        while (true) {
-            System.out.println("\n=== SERVIÇOS ADICIONAIS ===");
-            System.out.println("1. Serviço de Quarto");
-            System.out.println("2. Lavanderia");
-            System.out.println("3. SPA");
-            System.out.println("0. Finalizar seleção de serviços");
+    public static void exibirCabecalhoHotel() {
+        System.out.println("==============================================================");
+        System.out.println("|                                                            |");
+        System.out.println("|              BEM-VINDO AO SISTEMA DO HOTEL                 |");
+        System.out.println("|                      \u001B[34m██████╗ ██╗  ██╗\u001B[0m                      |");
+        System.out.println("|                      \u001B[34m██╔══██╗██║ ██╔╝\u001B[0m                      |");
+        System.out.println("|                      \u001B[34m███████╔█████╔╝\u001B[0m                       |");
+        System.out.println("|                      \u001B[34m██╔══██═██╔═██╗\u001B[0m                       |");
+        System.out.println("|                      \u001B[34m██║  ██ ██║  ██╗\u001B[0m                      |");
+        System.out.println("|                      \u001B[34m╚═╝     ╚═╝  ╚═╝\u001B[0m                      |");
+        System.out.println("|                   HOTEL KRONBAUER SYSTEM                   |");
+        System.out.println("|                                                            |");
+        System.out.println("==============================================================\n");
+    }
 
-            System.out.print("Escolha uma opção: ");
+    public static void exibirServicosAdicionais() {
+        System.out.println("╔═════════════════════════════════════╗");
+        System.out.println("║       SERVIÇOS ADICIONAIS          ║");
+        System.out.println("╠═════════════════════════════════════╣");
+        System.out.println("║ 1. Serviço de Quarto               ║");
+        System.out.println("║ 2. Lavanderia                      ║");
+        System.out.println("║ 3. SPA                             ║");
+        System.out.println("║ 0. Finalizar seleção               ║");
+        System.out.println("╚═════════════════════════════════════╝");
+        System.out.print("Escolha uma opção: ");
+    }
+
+    public static void exibirEncerramentoSistema() {
+        System.out.println("\n\n█████████████████████████████████████████████████████████████████");
+        System.out.println("█                                                           █");
+        System.out.println("█       \u001B[32mCheckout finalizado com sucesso! Até logo!\u001B[0m       █");
+        System.out.println("█                                                           █");
+        System.out.println("█             \u001B[32m  🤙 HOTEL KRONBAUER AGRADECE 🤙 \u001B[0m           █");
+        System.out.println("█                                                           █");
+        System.out.println("█████████████████████████████████████████████████████████████████\n");
+    }
+
+    private static void adicionarServicos(Scanner scanner, GerenciadorDeServicos gerenciadorServicos,
+            List<Item> itensDisponiveis) {
+        while (true) {
+            exibirServicosAdicionais();
             int escolha = Integer.parseInt(scanner.nextLine());
 
             switch (escolha) {
@@ -191,7 +218,8 @@ public class Main {
                 case 2 -> {
                     System.out.println("\nTipos de Lavanderia:");
                     for (TipoServicoLavanderia tipo : TipoServicoLavanderia.values()) {
-                        System.out.println((tipo.ordinal() + 1) + ". " + tipo.getDescricao() + " - R$" + tipo.getPrecoPorPeca());
+                        System.out.println(
+                                (tipo.ordinal() + 1) + ". " + tipo.getDescricao() + " - R$" + tipo.getPrecoPorPeca());
                     }
 
                     System.out.print("Escolha o tipo: ");
@@ -207,7 +235,8 @@ public class Main {
                 case 3 -> {
                     System.out.println("\nTipos de SPA:");
                     for (TipoServicoSPA tipo : TipoServicoSPA.values()) {
-                        System.out.println((tipo.ordinal() + 1) + ". " + tipo.getDescricao() + " - R$" + tipo.getPreco());
+                        System.out
+                                .println((tipo.ordinal() + 1) + ". " + tipo.getDescricao() + " - R$" + tipo.getPreco());
                     }
 
                     System.out.print("Escolha o tipo de serviço SPA: ");
