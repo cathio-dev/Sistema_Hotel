@@ -41,6 +41,14 @@ public class Reserva {
         return (valorQuarto + valorServicos) * (1 - desconto);
     }
 
+    public void valorReservaDias(){
+        long dias = java.time.temporal.ChronoUnit.DAYS.between(entrada, saida);
+        double valorQuarto = quarto.getValorDiaria() * dias;
+
+        System.out.printf(" - TOTAL: R$ %.2f\n", valorQuarto);
+        System.out.println("--------------------------\n");
+    }
+
     public Quarto getQuarto() {
         return this.quarto;
     }

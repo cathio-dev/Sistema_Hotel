@@ -11,6 +11,12 @@ public class GerenciadorDeQuartos {
         this.quartos = new TreeMap<>();
     }
 
+    public void valorDaDiaria(){
+        for (Quarto q : quartos.values()) {
+            System.out.println(q.getValorDiaria());
+        }
+    }
+
     public void adicionarQuarto(Quarto quarto) {
         if (quarto != null) {
             quartos.put(quarto.getNumero(), quarto);

@@ -13,6 +13,10 @@ public class CheckOut {
         return reserva.calcularTotalReserva();
     }
 
+    public Reserva getReserva() {
+        return reserva;
+    }
+
     public void processarCheckout(){
         reserva.getQuarto().liberarQuarto();
         System.out.println("\nCheckout realizado com sucesso.");

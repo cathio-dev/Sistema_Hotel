@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.*;
 
 import Servicos.GerenciadorDeServicos;
-import Entidades.GerenciadorDeQuartos;
 import Servicos.Servico;
 import Servicos.ServicoDeQuarto;
 import Servicos.ServicoLavanderia;
@@ -20,6 +19,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
+        double valorTotalServicos = 0;
         GerenciadorDeQuartos gerenciadorQuartos = new GerenciadorDeQuartos();
         GerenciadorDeServicos gerenciadorServicos = new GerenciadorDeServicos();
 
@@ -34,7 +34,18 @@ public class Main {
         gerenciadorQuartos.adicionarQuarto(new QuartoFamilia(301, 3, false, 250.0, 4, true));
         gerenciadorQuartos.adicionarQuarto(new SuitePresidencial(401, 4, false, 400.0, 2, true));
 
-        System.out.println("=== BEM-VINDO AO SISTEMA DO HOTEL KRONBAUER ===");
+        System.out.println("==============================================================");
+        System.out.println("|                                                            |");
+        System.out.println("|              BEM-VINDO AO SISTEMA DO HOTEL                 |");
+        System.out.println("|                      ██████╗ ██╗  ██╗                      |");
+        System.out.println("|                      ██╔══██╗██║ ██╔╝                      |");
+        System.out.println("|                      ███████╔█████╔╝                       |");
+        System.out.println("|                      ██╔══██═██╔═██╗                       |");
+        System.out.println("|                      ██║  ██ ██║  ██╗                      |");
+        System.out.println("|                      ╚═╝     ╚═╝  ╚═╝                      |");
+        System.out.println("|                   HOTEL KRONBAUER SYSTEM                   |");
+        System.out.println("|                                                            |");
+        System.out.println("==============================================================");
 
         System.out.print("\nDigite o nome do hóspede: ");
         String nome = scanner.nextLine();
@@ -95,21 +106,46 @@ public class Main {
         
        //resumo da reserva
         System.out.println("\n=== RESUMO DA RESERVA ===");
-        System.out.println("Hóspede: " + hospede.getNome() + " (Cadastro: " + hospede.getCadastro() + ")");
-        System.out.println("Quarto reservado: " + quartoEscolhido.getNumero() + " - " + quartoEscolhido.getClass().getSimpleName());
-        System.out.println("Data de entrada: " + entrada.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-        System.out.println("Data de saída: " + saida.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        System.out.println(" - Hóspede: " + hospede.getNome() + " (Cadastro: " + hospede.getCadastro() + ")");
+        System.out.println(" - Quarto reservado: " + quartoEscolhido.getNumero() + " - " + quartoEscolhido.getClass().getSimpleName());
+        System.out.println(" - Data de saída: " + saida.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        System.out.println(" - Data de entrada: " + entrada.format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        System.out.println();
 
-        System.out.println("\n Serviços incluídos:");
+        System.out.println("///--- BOLETO DE GASTOS ---///");
+        System.out.printf("-> Valor total a pagar: R$ %.2f\n", checkOut.calcularValorTotal());
+        System.out.println("--------------------------");
+        System.out.println("\n-> Serviços incluídos:");
         if (gerenciadorServicos.getServicos().isEmpty()) {
             System.out.println("Nenhum serviço adicional selecionado.");
         } else {
             for (Servico servico : gerenciadorServicos.getServicos()) {
-                System.out.println("- " + servico.getDescricao());
+                System.out.printf(" - %s - R$ %.2f\n", servico.getDescricao() ,servico.getPreco() );
+                valorTotalServicos = valorTotalServicos + servico.getPreco();
             }
+
+            System.out.println(" - TOTAL: R$ " + String.format("%.2f", valorTotalServicos));
+
+            System.out.println("--------------------------");
         }
 
+        System.out.println("-> Quarto incluído:");
+        System.out.println(" - " + quartoEscolhido.toString());
+        reserva.valorReservaDias(); // Printa quanto valor total (dias * diaria)
 
+        if(tipoHospede == 1){
+            System.out.println("Desconto de Hospede Corporativo = 10%");
+            System.out.println("(" + checkOut.calcularValorTotal()/0.9 + " - " + checkOut.calcularValorTotal()/0.9*0.1 + " = " + checkOut.calcularValorTotal() + ")");
+            System.out.println("--------------------------");
+        }else if(tipoHospede == 2){
+            System.out.println("Desconto de Hospede Fidelidade = 15%");
+            System.out.println("(" + checkOut.calcularValorTotal()/0.85 + " - " + checkOut.calcularValorTotal()/0.85*0.15 + " = " + checkOut.calcularValorTotal() + ")");
+            System.out.println("--------------------------");
+        }else{
+            System.out.println("Desconto de Hospede VIP = 20%");
+            System.out.println("(" + checkOut.calcularValorTotal()/0.8 + " - " + checkOut.calcularValorTotal()/0.8*0.2 + " = " + checkOut.calcularValorTotal() + ")");
+            System.out.println("--------------------------");
+        }
         System.out.println("=== APLICAÇÃO ENCERRADA ===");
         scanner.close();
     }

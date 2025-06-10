@@ -47,12 +47,10 @@ public abstract class Quarto {
 
     @Override
     public String toString() {
-        return "Quarto{" +
-                "numero=" + numero +
-                ", andar=" + andar +
-                ", status=" + status +
-                ", valorDiaria=" + valorDiaria +
-                '}';
+        return "Quarto" +
+                " numero " + numero +
+                ", andar " + andar +
+                ", com diaria no valor de: R$ " + String.format("%.2f", valorDiaria) + ".";
     }
 
     public abstract Double calculaDiaria(Double valorDiaria);
